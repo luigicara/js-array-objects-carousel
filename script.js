@@ -139,15 +139,7 @@ autoplay.addEventListener('click',
         clearInterval(intervalReverseAutoplay);
 
         intervalAutoplay = setInterval(function() {
-            removeClass();
-
-            activeItem++;
-
-            if (activeItem === 5) {
-                activeItem = 0;
-            }
-
-            addClass();
+            autoplayFunction(1, 5, 0)
         }, 3000)
     }
 )
@@ -158,15 +150,7 @@ autoplayReverse.addEventListener('click',
         clearInterval(intervalAutoplay);
 
         intervalReverseAutoplay = setInterval(function() {
-            removeClass();
-
-            activeItem--;
-
-            if (activeItem === -1) {
-                activeItem = 4;
-            }
-
-            addClass();
+            autoplayFunction(-1, -1, 4)
         }, 3000)
     }
 )
@@ -190,4 +174,16 @@ function addClass() {
     items[activeItem].classList.add('active');
 
     imgSlider[activeItem].classList.add('selected');
+}
+
+function autoplayFunction(operator, num1, num2) {
+    removeClass();
+    
+    activeItem = activeItem + operator;
+    
+    if (activeItem === num1) {
+        activeItem = num2;
+    }
+
+    addClass();
 }
